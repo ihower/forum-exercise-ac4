@@ -1,17 +1,31 @@
 
 <p><%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %></p>
 
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= sort_link(@q, :comments_count, "回覆數", default_order: :desc) %>
+<%= sort_link(@q, :created_at, "張貼時間", default_order: :desc) %>
+
 <table class="table">
 <tr>
   <th>Title</th>
   <th>Author</th>
   <th>Comments</th>
+  <th>Post at</th>
 </tr>
 <% @topics.each do |t| %>
   <tr>
     <td><%= link_to t.title, topic_path(t) %></td>
     <td><%= t.author_name %></td>
     <td><%= t.comments_count %></td>
+    <td><%= t.created_at.to_s(:short) %></td>
   </tr>
 <% end %>
 </table>
