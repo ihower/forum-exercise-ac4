@@ -14,6 +14,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = @topic.comments.find( params[:id] )
+
+    if @comment.can_delete_by?(current_user)
+      @comment.destroy
+    end
+
+    redirect_to :back
+  end
+
   protected
 
   def comment_params

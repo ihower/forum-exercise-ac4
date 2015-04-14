@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
     "https://www.gravatar.com/avatar/#{md5}"
   end
 
+  def is_admin?
+    #self.role == "admin"
+    false
+  end
+
 end
