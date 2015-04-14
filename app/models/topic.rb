@@ -8,8 +8,12 @@ class Topic < ActiveRecord::Base
   has_many :topic_categories
   has_many :categories, :through => :topic_categories
 
-  def self.only_published(u)
-    where( ["status = ? OR ( status = ? AND user_id = ? )", "published", "draft", u.id ] )
+  def self.only_published(user)
+    if user
+      where( ["status = ? OR ( status = ? AND user_id = ? )", "published", "draft", user.id ] )
+    else
+      where( :status => "published" )
+    end
   end
 
   def view!
