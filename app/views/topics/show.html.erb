@@ -6,9 +6,37 @@
 
 <p class="text-right"><%= @topic.created_at.to_s(:short) %></p>
 
+<p><a href="#" id="comment-btn" class="btn btn-primary">Reply</a></p>
+
+<div id="comment-form">
+
+<%= form_for [@topic, @comment] do |f| %>
+
+  <% if @comment.errors.any? %>
+    <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_area :content, :rows => 5, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+</div>
+
 <hr>
 
 <% @topic.comments.each do |comment| %>
+
+<% next if comment.new_record? %>
 
 <div class="media">
   <div class="media-left">
@@ -26,3 +54,15 @@
 </div>
 
 <% end %>
+
+<script>
+  var comment_form = $("#comment-form")
+
+  <% unless @comment.errors.any? %>
+    comment_form.hide();
+  <% end %>
+
+  $("#comment-btn").click(function(){
+    comment_form.slideToggle();
+  })
+</script>
