@@ -1,3 +1,6 @@
+
+<p><%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %></p>
+
 <table class="table">
 <tr>
   <th>Title</th>
@@ -6,7 +9,7 @@
 <% @topics.each do |t| %>
   <tr>
     <td><%= t.title %></td>
-    <td>?</td>
+    <td><%= t.author_name %></td>
   </tr>
 <% end %>
 </table>
