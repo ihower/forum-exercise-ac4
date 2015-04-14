@@ -1,0 +1,11 @@
+<h1>Forum</h1>
+
+
+<% @topics.each do |t| %>
+
+  <%= t.title %>
+
+<% end %>
+
+
+<%= paginate @topics %>
