@@ -31,7 +31,7 @@
   <th>Post at</th>
 </tr>
 <% @topics.each do |t| %>
-  <tr>
+  <tr class="<%= t.status %>">
     <td><%= link_to t.title, topic_path(t) %></td>
     <td>
       <% t.authors.each do |u| %>

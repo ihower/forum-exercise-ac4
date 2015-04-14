@@ -14,6 +14,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, ["published", "draft"] %>
+  </div>
+
+  <div class="form-group">
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
 

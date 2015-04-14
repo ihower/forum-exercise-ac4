@@ -13,6 +13,8 @@ class TopicsController < ApplicationController
       @topics = Topic.all
     end
 
+    @topics = @topics.only_published(current_user)
+
     @q = @topics.ransack(params[:q])
     @topics = @q.result(distinct: true).page(params[:page])
   end
@@ -56,7 +58,7 @@ class TopicsController < ApplicationController
   protected
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :category_ids => [])
+    params.require(:topic).permit(:title, :content, :status, :category_ids => [])
   end
 
 end
