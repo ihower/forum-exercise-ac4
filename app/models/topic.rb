@@ -8,6 +8,10 @@ class Topic < ActiveRecord::Base
   has_many :topic_categories
   has_many :categories, :through => :topic_categories
 
+  def view!
+    self.increment!(:views_count)
+  end
+
   def authors
     arr = self.comments.map{ |c| c.user }
     arr << self.user

@@ -27,6 +27,7 @@
   <th>Title</th>
   <th>Authors</th>
   <th>Comments</th>
+  <th>Views</th>
   <th>Post at</th>
 </tr>
 <% @topics.each do |t| %>
@@ -38,6 +39,7 @@
       <% end %>
     </td>
     <td><%= t.comments_count %></td>
+    <td><%= t.views_count %></td>
     <td><%= t.created_at.to_s(:short) %></td>
   </tr>
 <% end %>
