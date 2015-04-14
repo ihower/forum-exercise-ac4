@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20150414021311) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "comments_count"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "comments_count", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "topics", ["user_id"], name: "index_topics_on_user_id"
