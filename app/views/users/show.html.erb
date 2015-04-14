@@ -1,0 +1,22 @@
+<h2><%= @user.display_name %></h2>
+
+<h3>Topic list</h3>
+
+<ul>
+<% @user.topics.each do |t| %>
+
+  <li><%= link_to t.title, topic_path(t) %> at <%= t.created_at.to_s(:short) %></li>
+<% end %>
+</ul>
+
+<h3>Comment list</h3>
+
+<ul>
+<% @user.comments.group(:topic_id).order("comments.id DESC").each do |c| %>
+
+  <li><%= link_to "Re: #{c.topic.title}", topic_path(c.topic, :anchor => "comment-#{c.id}" ) %>
+      at <%= c.created_at.to_s(:short) %>
+  </li>
+
+<% end %>
+</ul>

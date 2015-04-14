@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/about" => "topics#about"
 
+  resources :users
+
   resources :topics do
     resources :comments
   end
