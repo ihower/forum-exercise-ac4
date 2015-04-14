@@ -2,6 +2,9 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :only => [:new, :create, :destroy]
 
+  def about
+  end
+
   def index
     if params[:cid]
       category = Category.find(params[:cid])

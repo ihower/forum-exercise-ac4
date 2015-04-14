@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
+  get "/about" => "topics#about"
+
   resources :topics do
     resources :comments
   end

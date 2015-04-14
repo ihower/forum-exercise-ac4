@@ -27,6 +27,7 @@
 
 <p class="text-right">
        <% if current_user %>
+            <%= link_to "關於本站", about_path %> |
             <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
             <%= link_to('修改密碼', edit_registration_path(:user)) %>
         <% else %>
