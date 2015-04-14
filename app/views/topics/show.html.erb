@@ -1,5 +1,7 @@
 <h2><%= @topic.title %> <small><%= @topic.author_name %></small></h2>
 
+<%= user_avatar(@topic.user) %>
+
 <%= simple_format @topic.content %>
 
 <p class="text-right"><%= @topic.created_at.to_s(:short) %></p>
@@ -11,7 +13,9 @@
 <div class="media">
   <div class="media-left">
     <a href="#">
-      <img class="media-object" src="..." alt="...">
+      <% if comment.user %>
+        <%= user_avatar comment.user %>
+      <% end %>
     </a>
   </div>
   <div class="media-body">

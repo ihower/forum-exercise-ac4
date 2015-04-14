@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
     self.email.split("@").first
   end
 
+  def gavatar_url
+    md5 = Digest::MD5.hexdigest(self.email.downcase)
+    "https://www.gravatar.com/avatar/#{md5}"
+  end
+
 end
