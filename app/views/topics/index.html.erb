@@ -2,7 +2,7 @@
 <p><%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %></p>
 
 
-<%= search_form_for @q do |f| %>
+<%= search_form_for @q, :class => "text-right" do |f| %>
 
   <%= f.label :title_cont %>
   <%= f.search_field :title_cont %>
@@ -10,14 +10,17 @@
   <%= f.submit %>
 <% end %>
 
-<p>
-<% Category.all.each do |c| %>
-  <%= link_to c.name, topics_path( :cid => c ) %>
-<% end %>
-</p>
+<ul class="nav nav-tabs">
+  <% Category.all.each do |c| %>
+  <li role="presentation" class="<%= (params[:cid] == c.id.to_s) ? "active" : "" %>"><%= link_to c.name, topics_path( :cid => c ) %></li>
+  <% end %>
+  <li role="presentation" class="<%= (params[:cid].blank?)? "active" : "" %>"><%= link_to "All", topics_path %></li>
+</ul>
 
+<p class="text-right">
 <%= sort_link(@q, :comments_count, "回覆數", default_order: :desc) %>
 <%= sort_link(@q, :created_at, "張貼時間", default_order: :desc) %>
+</p>
 
 <table class="table">
 <tr>
