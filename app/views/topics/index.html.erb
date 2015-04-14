@@ -1,11 +1,14 @@
-<h1>Forum</h1>
-
-
+<table class="table">
+<tr>
+  <th>Title</th>
+  <th>Author</th>
+</tr>
 <% @topics.each do |t| %>
-
-  <%= t.title %>
-
+  <tr>
+    <td><%= t.title %></td>
+    <td>?</td>
+  </tr>
 <% end %>
-
+</table>
 
 <%= paginate @topics %>
