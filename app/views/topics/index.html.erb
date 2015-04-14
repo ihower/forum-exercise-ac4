@@ -10,6 +10,12 @@
   <%= f.submit %>
 <% end %>
 
+<p>
+<% Category.all.each do |c| %>
+  <%= link_to c.name, topics_path( :cid => c ) %>
+<% end %>
+</p>
+
 <%= sort_link(@q, :comments_count, "回覆數", default_order: :desc) %>
 <%= sort_link(@q, :created_at, "張貼時間", default_order: :desc) %>
 

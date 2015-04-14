@@ -1,5 +1,11 @@
 <h2><%= @topic.title %> <small><%= @topic.author_name %></small></h2>
 
+<p>
+<% @topic.categories.each do |c| %>
+  <%= c.name %>
+<% end %>
+</p>
+
 <%= user_avatar(@topic.user) %>
 
 <%= simple_format @topic.content %>
