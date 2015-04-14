@@ -6,6 +6,10 @@ class TopicsController < ApplicationController
     @topics = Topic.page(params[:page])
   end
 
+  def show
+    @topic = Topic.find(params[:id])
+  end
+
   def new
     @topic = Topic.new
   end

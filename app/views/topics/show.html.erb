@@ -1,0 +1,24 @@
+<h2><%= @topic.title %> <small><%= @topic.author_name %></small></h2>
+
+<%= simple_format @topic.content %>
+
+<p class="text-right"><%= @topic.created_at.to_s(:short) %></p>
+
+<hr>
+
+<% @topic.comments.each do |comment| %>
+
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= comment.author_name %></h4>
+    <%= simple_format comment.content %>
+    <p class="text-right"><%= comment.created_at.to_s(:short) %></p>
+  </div>
+</div>
+
+<% end %>

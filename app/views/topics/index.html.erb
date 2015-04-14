@@ -8,7 +8,7 @@
 </tr>
 <% @topics.each do |t| %>
   <tr>
-    <td><%= t.title %></td>
+    <td><%= link_to t.title, topic_path(t) %></td>
     <td><%= t.author_name %></td>
   </tr>
 <% end %>
