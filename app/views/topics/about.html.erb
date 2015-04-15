@@ -6,3 +6,33 @@
 
 
 <p>Total users: <%= User.count %></p>
+
+<p>
+  <a href="#" id="insert-image">Insert Image</a>
+  <a href="#" id="insert-script">Insert Script</a>
+</p>
+
+<div id="demo"></div>
+
+<script>
+
+var bar = null;
+function bar(data) {
+  bar = data
+}
+
+$("#insert-image").click(function(){
+  var img = $("<img src='https://ihower.tw/photo1.jpg' width='100'>");
+
+  $("#demo").append(img);
+})
+
+$("#insert-script").click(function(){
+ var script = '<script src="https://ihower.tw/test.js">'
+ script += '<';
+ script += '/script>';
+
+  $("#demo").append(script);
+  console.log("foo is: " + foo);
+})
+</script>
