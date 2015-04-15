@@ -6,9 +6,11 @@ class TopicsController < ApplicationController
   end
 
   def index
-    if params[:cid]
+    if params[:cid] && params[:cid] != "0"
       category = Category.find(params[:cid])
       @topics = category.topics
+    elsif params[:cid] == "0"
+      @topics = Topic.joins("LEFT OUTER JOIN topic_categories ON topics.id = topic_categories.topic_id").group("topics.id").having("count(topic_categories.category_id) = 0")
     else
       @topics = Topic.all
     end
