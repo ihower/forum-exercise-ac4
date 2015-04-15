@@ -33,7 +33,7 @@
 
 <div id="comment-form">
 
-<%= form_for [@topic, @comment], :remote => true do |f| %>
+<%= form_for [@topic, @comment], :remote => true, :data => { :type => :json } do |f| %>
 
   <% if @comment.errors.any? %>
     <ul>
@@ -84,5 +84,11 @@
   if (hash) {
     $("#" + hash).css( { "background-color": "#eee" } );
   }
+
+  $('#comment-form form').on("ajax:success", function(event, data) {
+    console.log(data);
+
+    $("#comments").append( JST["templates/comment"]({ comment: data }) );
+  });
 
 </script>

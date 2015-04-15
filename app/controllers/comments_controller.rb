@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to topic_url(@topic) }
         format.js
+        format.json { render :json => @comment }
       else
         format.html { render :template => "topics/show" }
         format.js

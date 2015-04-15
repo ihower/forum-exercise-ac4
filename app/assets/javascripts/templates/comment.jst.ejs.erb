@@ -1,0 +1,14 @@
+<div class="media" id="comment-<%%= comment.id %>">
+  <div class="media-left">
+    <a href="#">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%%= comment.user_id %></h4>
+    <%%= comment.content %>
+
+    <p class="text-right">
+      <%%= comment.created_at %>
+    </p>
+  </div>
+</div>
