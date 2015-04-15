@@ -1,0 +1,16 @@
+<% if @comment.errors.any? %>
+
+  alert("fail");
+
+<% else %>
+
+  $("#comment-form form").trigger("reset");
+  $("#comment-form").toggle();
+
+  $("#comments").append('<%= j(render "comments/comment", :comment => @comment ) %>');
+
+  aTag = $("#comment-<%= @comment.id %>");
+
+  $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+
+<% end %>

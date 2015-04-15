@@ -33,7 +33,7 @@
 
 <div id="comment-form">
 
-<%= form_for [@topic, @comment] do |f| %>
+<%= form_for [@topic, @comment], :remote => true do |f| %>
 
   <% if @comment.errors.any? %>
     <ul>
@@ -57,33 +57,16 @@
 
 <hr>
 
-<% @topic.comments.each do |comment| %>
+<div id="comments">
+  <% @topic.comments.each do |comment| %>
 
-<% next if comment.new_record? %>
+  <% next if comment.new_record? %>
 
-<div class="media" id="comment-<%= comment.id %>">
-  <div class="media-left">
-    <a href="#">
-      <% if comment.user %>
-        <%= user_avatar comment.user %>
-      <% end %>
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading"><%= comment.author_name %></h4>
-    <%= simple_format comment.content %>
-    <p class="text-right">
-      <%= comment.created_at.to_s(:short) %>
+  <%= render "comments/comment", :comment => comment %>
 
-      <% if comment.can_delete_by?(current_user) %>
-      <%= link_to "Delete", topic_comment_path(@topic, comment), :method => :delete, :data => { :confirm => "Are you sure?"} %>
-      <% end %>
+  <% end %>
 
-    </p>
-  </div>
 </div>
-
-<% end %>
 
 <script>
   var comment_form = $("#comment-form")
