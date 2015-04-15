@@ -12,14 +12,13 @@
   <a href="#" id="insert-script">Insert Script</a>
 </p>
 
+<p>
+  <a href="/ajaxtest" id="ajax-load">Load HTML</a>
+</p>
+
 <div id="demo"></div>
 
 <script>
-
-var bar = null;
-function bar(data) {
-  bar = data
-}
 
 $("#insert-image").click(function(){
   var img = $("<img src='https://ihower.tw/photo1.jpg' width='100'>");
@@ -34,5 +33,20 @@ $("#insert-script").click(function(){
 
   $("#demo").append(script);
   console.log("foo is: " + foo);
+})
+
+$("#ajax-load").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  $.ajax(url, {
+    success: function(res) {
+      $("#demo").append(res);
+    },
+    error: function(res, error_type, error_msg) {
+      console.log(res);
+      console.log(error_type);
+      console.log(error_msg);
+    }
+  })
 })
 </script>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "/about" => "topics#about"
+  get "/ajaxtest" => "topics#ajaxtest"
 
   resources :users
 

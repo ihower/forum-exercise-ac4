@@ -5,6 +5,10 @@ class TopicsController < ApplicationController
   def about
   end
 
+  def ajaxtest
+    render :layout => false
+  end
+
   def index
     if params[:cid] && params[:cid] != "0"
       category = Category.find(params[:cid])
