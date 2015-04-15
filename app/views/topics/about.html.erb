@@ -13,7 +13,9 @@
 </p>
 
 <p>
-  <a href="/ajaxtest" id="ajax-load">Load HTML</a>
+  <a href="/ajaxtest" id="ajax-load1">Load HTML</a>
+  <a href="/ajaxtest" id="ajax-load2">Load Script</a>
+  <a href="/ajaxtest" id="ajax-load3">Load JSON</a>
 </p>
 
 <div id="demo"></div>
@@ -43,7 +45,7 @@ $("#insert-script").click(function(){
 
 $("#ajax-progress").hide();
 
-$("#ajax-load").click(function(e){
+$("#ajax-load1").click(function(e){
   e.preventDefault();
   var url = $(this).attr("href");
   $.ajax(url, {
@@ -63,4 +65,24 @@ $("#ajax-load").click(function(e){
     }
   })
 })
+
+$("#ajax-load2").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  $.ajax(url, {
+    dataType: 'script'
+  })
+})
+
+$("#ajax-load3").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  $.ajax(url, {
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+    }
+  })
+})
+
 </script>

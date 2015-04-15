@@ -6,8 +6,18 @@ class TopicsController < ApplicationController
   end
 
   def ajaxtest
-    sleep(1);
-    render :layout => false
+    respond_to do |format|
+      format.html {
+        sleep(1);
+        render :layout => false
+      }
+      format.js {
+        render :js => "alert('Awesome');"
+      }
+      format.json {
+        render :json => { "foo" => 1 }
+      }
+    end
   end
 
   def index
