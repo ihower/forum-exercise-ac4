@@ -18,6 +18,12 @@
 
 <div id="demo"></div>
 
+<div id="ajax-progress" class="progress">
+  <div class="progress-bar progress-bar-striped active" style="width: 100%">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+
 <script>
 
 $("#insert-image").click(function(){
@@ -35,6 +41,8 @@ $("#insert-script").click(function(){
   console.log("foo is: " + foo);
 })
 
+$("#ajax-progress").hide();
+
 $("#ajax-load").click(function(e){
   e.preventDefault();
   var url = $(this).attr("href");
@@ -46,6 +54,12 @@ $("#ajax-load").click(function(e){
       console.log(res);
       console.log(error_type);
       console.log(error_msg);
+    },
+    beforeSend: function() {
+      $("#ajax-progress").show();
+    },
+    complete: function() {
+      $("#ajax-progress").hide();
     }
   })
 })

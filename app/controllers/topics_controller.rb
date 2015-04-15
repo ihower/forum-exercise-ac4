@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def ajaxtest
+    sleep(1);
     render :layout => false
   end
 
