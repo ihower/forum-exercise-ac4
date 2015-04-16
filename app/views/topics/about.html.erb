@@ -6,6 +6,8 @@
 
 <%= link_to "Load Script", ajaxtest_path, :id => "ajax-load-script", :remote => true %>
 
+<%= link_to "Load JSON", ajaxtest_path, :id => "ajax-load-json" %>
+
 <div id="ajax-progress" class="progress">
   <div class="progress-bar progress-bar-striped active" style="width: 100%">
     <span class="sr-only">Complete</span>
@@ -20,7 +22,15 @@
 <div id="demo2">
 </div>
 
+<script id="main-template" type="text/template">
+    <h1>{{title}}</h1>
+    <p>{{content}}</p>
+</script>
+
+
 <script>
+   var template = $('#main-template').html();
+
   //$("#ajax-load-script").click(function(e){
   //  e.preventDefault();
   //  var url = $(this).attr("href");
@@ -49,6 +59,24 @@
       },
       complete: function(){
         $("#ajax-progress").hide();
+      }
+    })
+  })
+
+  $("#ajax-load-json").click(function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.ajax(url, {
+      dataType: "json",
+      success: function(data) {
+        //$("#demo").append( data["foo"] );
+        //$("#demo2").append( data["bar"] );
+
+        var html = template.replace("{{title}}", data["title"] );
+        html = html.replace("{{content}}", data["content"]);
+
+        $("#demo").append( html );
+
       }
     })
   })
