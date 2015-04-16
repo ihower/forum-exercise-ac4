@@ -2,6 +2,13 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :only => [:new, :create, :destroy]
 
+  def ajaxtest
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.js
+    end
+  end
+
   def about
   end
 

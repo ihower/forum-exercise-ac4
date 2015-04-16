@@ -1,8 +1,56 @@
-
 <p>Total topics: <%= Topic.count %></p>
-
-
 <p>Total comments: <%= Comment.count %></p>
-
-
 <p>Total users: <%= User.count %></p>
+
+<%= link_to "Load HTML", ajaxtest_path, :id => "ajax-load-html" %>
+
+<%= link_to "Load Script", ajaxtest_path, :id => "ajax-load-script", :remote => true %>
+
+<div id="ajax-progress" class="progress">
+  <div class="progress-bar progress-bar-striped active" style="width: 100%">
+    <span class="sr-only">Complete</span>
+  </div>
+</div>
+
+<div id="demo">
+</div>
+
+<hr>
+
+<div id="demo2">
+</div>
+
+<script>
+  //$("#ajax-load-script").click(function(e){
+  //  e.preventDefault();
+  //  var url = $(this).attr("href");
+  //  $.ajax(url, {
+  //    dataType: "script"
+  //  });
+  //});
+
+  $("#ajax-progress").hide();
+
+  $("#ajax-load-html").click(function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+
+    $.ajax(url, {
+      success: function(response) {
+        $("#demo").html(response);
+      },
+      error: function(response, error_type, error_message) {
+        console.log(response);
+        console.log(error_type);
+        console.log(error_message);
+      },
+      beforeSend: function(){
+        $("#ajax-progress").show();
+      },
+      complete: function(){
+        $("#ajax-progress").hide();
+      }
+    })
+  })
+
+</script>

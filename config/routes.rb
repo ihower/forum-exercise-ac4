@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get "/ajaxtest" => "topics#ajaxtest"
+
   get "/about" => "topics#about"
 
   resources :users
