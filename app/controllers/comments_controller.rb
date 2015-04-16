@@ -7,10 +7,14 @@ class CommentsController < ApplicationController
     @comment = @topic.comments.new(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to topic_url(@topic)
-    else
-      render :template => "topics/show"
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to topic_url(@topic) }
+        format.js
+      else
+        format.html { render :template => "topics/show" }
+        format.js
+      end
     end
   end
 

@@ -1,0 +1,15 @@
+<% if @comment.errors.any? %>
+
+  alert("Fail!!");
+
+<% else %>
+  $("#comment-form form").trigger("reset");
+
+  $("#comment-form").toggle();
+
+  $("#comments").append("<%= escape_javascript( render "comment", :comment => @comment ) %>");
+
+  var aTag = $("#comment-<%= @comment.id %>");
+  $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+
+<% end %>
