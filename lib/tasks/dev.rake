@@ -1,5 +1,31 @@
 namespace :dev do
 
+  task :test_pluck => :environment do
+    n = 1000
+    Benchmark.bm do |x|
+      x.report {
+        n.times do
+          topic_ids = Topic.where( :user_id => 6 ).map{ |t| t.id }
+          comments = Comment.where( :topic_id => topic_ids )
+        end
+      }
+
+      x.report {
+        n.times do
+          topic_ids = Topic.where( :user_id => 6 ).pluck(:id)
+          comments = Comment.where( :topic_id => topic_ids )
+        end
+      }
+
+      x.report {
+        n.times do
+          Comment.joins(:topic).where( "topics.user_id" => 6)
+        end
+      }
+    end
+
+  end
+
   task :fake => :environment do
     puts "Fake data..."
 
